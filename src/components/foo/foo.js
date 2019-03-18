@@ -1,18 +1,14 @@
 import React from 'react';
 import Bar from '../bar/bar';
-import { StateConsumer } from '../../state/stateContext';
+import withState from '../../higherOrderComponents/withState';
 
-function Foo() {
+function Foo(props) {
   return (
     <div>
       This is foo!
-      <StateConsumer>
-        {context =>
-          <Bar fizzes={context.state.fizzes} addFiz={context.repository.addFiz} />
-        }
-      </StateConsumer>
+      <Bar fizzes={props.context.state.fizzes} addFiz={props.context.repository.addFiz} />
     </div>
   );
 }
 
-export default Foo;
+export default withState(Foo);
